@@ -2,11 +2,14 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const Usuario = require('../models/usuario');
+//importamos el middleware que verifica el token
+const { verificaToken, verificaAdminRole } = require('../middlewares/autenticacion'); 
 
 const app = express();
 
 //usado para obtener registros
-app.get('/usuario', (req, res) => {
+app.get('/usuario', verificaToken, (req, res) => {
+    
     //usamos una funcion de mongoose para traer todos 
     //los registros de la base de datos con limites 
     //de 5 registros por peticion
@@ -27,7 +30,7 @@ app.get('/usuario', (req, res) => {
         }
 
         //retornamos el numero de registros de una coleccion
-        Usuario.count({estado: true}, (err, conteo)=>{
+        Usuario.countDocuments({estado: true}, (err, conteo)=>{
             res.json({
                 ok: true,
                 usuarios,
@@ -40,7 +43,7 @@ app.get('/usuario', (req, res) => {
   });
   
   //usado para crear nuevos registros
-  app.post('/usuario', (req, res) => {
+  app.post('/usuario', [verificaToken, verificaAdminRole], (req, res) => {
     let body = req.body;
 
         let usuario = new Usuario({
@@ -69,7 +72,7 @@ app.get('/usuario', (req, res) => {
     });
   
   //PUT y PATCH muy usados para actualizar registros
-  app.put('/usuario/:id', (req, res) => {
+  app.put('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
       let id = req.params.id;
       //aplicamos una funcion de underscore que filtra un objeto extrayendo
       //solo los elementos indicados
@@ -97,7 +100,7 @@ app.get('/usuario', (req, res) => {
   
   //delete usado para borrar registros aunque en las bases de datos ya no se acostumbra, 
   //solo se usa para actualiar el estado de un registro para que ya no este disponible
-  app.delete('/usuario/:id', (req, res) => {
+  app.delete('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
       //necesitamos conocer el id del registro que vamos a borrar
       //para ello lo obtenemos asi:
     let id = req.params.id;
