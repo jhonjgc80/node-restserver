@@ -2,6 +2,7 @@ require('./config/config');
 
 const express = require('express');
 const mongoose = require('mongoose'); //usado para conectarse a la base de datos Mongodb
+const path = require('path');
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -11,6 +12,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
  
 // parse application/json
 app.use(bodyParser.json());
+
+//habilitar la carpeta public para que sea accesible desde cualquier lugar
+app.use(express.static(path.resolve(__dirname, '../public')));
+
 
 //configuracion global de rutas desde el archivo index.js
 app.use(require('./routes/index'));
