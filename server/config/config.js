@@ -1,3 +1,6 @@
+//archivo nos permite cambiar entre entorno de desarrollo y produccion
+//entre otros
+
 //===============
 //     puerto
 //===============

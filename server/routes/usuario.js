@@ -1,7 +1,8 @@
+//archivo para manejar las rutas delos usuarios
 const express = require('express');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); //usado para el proceso de encriptacion del password
 const _ = require('underscore');
-const Usuario = require('../models/usuario');
+const Usuario = require('../models/usuario'); //importamos el modelo
 //importamos el middleware que verifica el token
 const { verificaToken, verificaAdminRole } = require('../middlewares/autenticacion'); 
 
@@ -53,6 +54,7 @@ app.get('/usuario', verificaToken, (req, res) => {
             role: body.role
         });
 
+        //para grabar en la DB 
         usuario.save((err, usuarioDB)=>{
             if(err){
                 return res.status(400).json({
@@ -60,10 +62,8 @@ app.get('/usuario', verificaToken, (req, res) => {
                     err
                 });
             }
-
             //para no mostrar informacion sobre la contraseña
             //usuarioDB.password = null;
-
             res.json({
                 ok: true,
                 usuario: usuarioDB
@@ -140,7 +140,7 @@ app.get('/usuario', verificaToken, (req, res) => {
             ok: true,
             usuario: usuarioDeshabilitado
         });
-      })
+      });
 
 });
 

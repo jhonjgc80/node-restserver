@@ -20,7 +20,7 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 //configuracion global de rutas desde el archivo index.js
 app.use(require('./routes/index'));
 
-//funcion para establecer la conexion
+//funcion para establecer la conexion a la base de datos MongoDB
 mongoose.connect(process.env.URLDB, {useNewUrlParser: true}, (err,res) =>{
     //si hay un error en la conexion
     if (err) throw err;

@@ -1,6 +1,8 @@
-//encargado de trabajar el modelo de datos
+//encargado de trabajar el modelo de datos usado para grabar
+//en la base de datos
 
 const mongoose = require('mongoose');
+//plugin para definir que un campo sea unico en este caso el email
 const uniqueValidator = require('mongoose-unique-validator');
 
 let rolesValidos = {
@@ -50,7 +52,6 @@ usuarioSchema.methods.toJSON = function() {
     let user = this;
     let userObject = user.toObject();
     delete userObject.password;
-
     return userObject;
 }
 
