@@ -11,6 +11,8 @@
 </head>
 <body>
 
+    <!-- <img src="http://localhost:3000/imagen/productos/5c353ec855b139f8c83db57c-134.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJVU0VSX1JPTEUiLCJlc3RhZG8iOnRydWUsImdvb2dsZSI6dHJ1ZSwiX2lkIjoiNWMzMzk2NWI4MThhYmNkZGVhY2U3MzExIiwibm9tYnJlIjoiSkhPTiBKQUlSTyBHT1lFUyBDT0xMQVpPUyIsImVtYWlsIjoiamhvbmpnYzgwQGdtYWlsLmNvbSIsImltZyI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8td0tidFhpazFodWsvQUFBQUFBQUFBQUkvQUFBQUFBQUFBRTQvb09kMkpwWExmUzAvczk2LWMvcGhvdG8uanBnIiwiX192IjowfSwiaWF0IjoxNTQ2ODg1NzM2LCJleHAiOjE1NDk0Nzc3MzZ9.GudbxhaP9PJ4ck3NyMQATHg40XufTWaLmGJGIK7ZINA" alt=""> -->
+
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
     <a href="#" onclick="signOut();">Sign out</a>
@@ -33,7 +35,6 @@
             console.log('Signed in as: ' + xhr.responseText);
         };
         xhr.send('idtoken=' + id_token);
-
         }
         
         function signOut() {
